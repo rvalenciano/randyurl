@@ -27,8 +27,9 @@ module Api::V1
       mechanize = Mechanize.new
       page = mechanize.get('http://en.wikipedia.org/wiki/Main_Page/')
       created_objects = []
+      urls_to_process = params['number'] || 5
       # We will follow random articles from wikipedia 150 times
-      5.times do
+      urls_to_process.to_i.times do
         link = page.link_with(text: 'Random article')
         page = link.click
         u = Url.process_url(page.uri)

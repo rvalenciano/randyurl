@@ -106,10 +106,10 @@ Please be sure that the short url was calculated in the first CURL.
 
 * Bot endpoint
 
-This will delete all data and insert 150 random REAL urls and it's short form.
+This will delete all data and insert X random REAL urls and it's short form, where X is determined by `number` param.
 
 ```shell
- curl -XPOST http://localhost:3000/v1/bot
+ curl --data "number=15" -XPOST http://localhost:3000/v1/bot
  ```
 
 
