@@ -45,6 +45,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   # We want to see coverage
   gem 'simplecov'
+  # Fake data
+  gem 'faker'
 end
 
 group :development do

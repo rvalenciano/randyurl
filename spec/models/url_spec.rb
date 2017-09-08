@@ -8,6 +8,9 @@ RSpec.describe Url, type: :model do
                         minified_url: 'http://randyurl.com/j7ve58y')
   end
 
+  let!(:unaccessed_url) { create :url }
+  let!(:accessed_url) { create :url, :accessed }
+
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
@@ -16,8 +19,18 @@ RSpec.describe Url, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'is not valid without a minified url' do
-    subject.minified_url = nil
+  it 'is not valid without a access' do
+    subject.access = nil
     expect(subject).to_not be_valid
+  end
+
+  it 'unaccessed is not valid without a url' do
+    unaccessed_url.url = nil
+    expect(unaccessed_url).to_not be_valid
+  end
+
+  it 'accessed is not valid without a url' do
+    accessed_url.url = nil
+    expect(accessed_url).to_not be_valid
   end
 end
