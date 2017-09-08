@@ -42,7 +42,7 @@ RSpec.describe Url, type: :model do
 
   it 'verifies encode url works' do
     url = Url.process_url('http://someurl/something/over/the/rainbow')
-    expect(url.minified_url.split('/').last.length).to eq accessed_once.minified_url.split('/').last.length
+    expect(url.minified_url.split('/').last.present?).to eq accessed_once.minified_url.split('/').last.present?
   end
 
   it 'verifies decode url works' do

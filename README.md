@@ -34,6 +34,16 @@ Some of the libraries we use to build our api are:
 * rails_admin for CRUD management
 
 
+#### Redis
+
+We use redis as a model cache. Basically when a user lookup a short url, we verifiy if it's already in redis 
+as a key. If it is, we return the long url. If not, we decode and go to the database to retrieve the long url
+with the decoded id.
+
+Imagine this scenario: A user searches N times for the same short url. If we don't have this model cache, we are gonna go to the database N times. With redis, we are gona go 1 time and the rest is retrieved in memory.
+
+To save the access, in the case of not found in redis, we increaste the counter when we find the row with the long url. If it's found in redis, we use a cool library called `suckerpunch` to in an async way, update that value in the database (the user doesn't have to wait for the disc access)
+
 ### Installation
 
 We use vagrant to set up a developer flow agnostic of the host machine and stadardized process to
@@ -77,6 +87,32 @@ bin/rails s
 
 For the seeds, we actually use a web crawler to retrieve actual urls from pages of wikipedia. This way we seed real urls.
 
+How to test it works. To test the backend API endpoints:
+
+* Test that it takes a large url and it shortens it. It will return the url object with the minified url.
+
+```shell
+curl -XPOST --data "url=https://en.wikipedia.org/wiki/Centralist_Republic_of_Mexico" http://localhost:3000/v1/urls
+```
+
+* Test that it takes a short url and returns a large url.
+
+```shell
+curl -XPOST --data "url=http://localhost:3000/y/fI" http://localhost:3000/v1/urls/lookup
+```
+
+Please be sure that the short url was calculated in the first CURL.
+
+
+* Bot endpoint
+
+This will delete all data and insert 150 random REAL urls and it's short form.
+
+```shell
+ curl -XPOST http://localhost:3000/v1/bot
+ ```
+
+
 #### Running Tests
 
 ##### Unit
@@ -92,6 +128,8 @@ bundle exec rspec spec
 ```
 
 ##### Integration
+
+To Do.
 
 ### Development
 

@@ -16,3 +16,4 @@ sudo chown redis:redis /var/lib/redis
 sudo chmod 770 /var/lib/redis
 sudo systemctl start redis
 sudo systemctl status redis
+echo config set stop-writes-on-bgsave-error no | redis-cli
