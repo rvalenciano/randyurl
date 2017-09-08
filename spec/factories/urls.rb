@@ -5,6 +5,7 @@ require 'faker'
 FactoryGirl.define do
   factory :url do
     url { Faker::Internet.url }
+    id { Faker::Number.unique.between(1, 1000000) }
     minified_url 'http://randyurl/879879797978'
     access 0
 

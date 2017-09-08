@@ -11,15 +11,20 @@ module Api::V1
     end
 
     def create
+      # if is not in cache, we create it
       @url = Url.new
-      @url.process_url(params[:url])
-      if @url.save
-        render json: @url, status: :created 
-      else
+      begin
+        @url.process_url(params[:url])
+        if @url.save
+          render json: @url, status: :created
+        else
+          render json: @url.errors, status: :unprocessable_entity
+        end
+      rescue => exception
         render json: @url.errors, status: :unprocessable_entity
+      else
+      ensure
       end
-    rescue => e
-      render json: e, status: :unprocessable_entity
     end
   end
 end

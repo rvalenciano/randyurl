@@ -38,6 +38,12 @@ gem 'rails_admin', '~> 1.2'
 gem 'active_model_serializers'
 # API Protection
 gem 'rack-attack'
+# Redis model caching
+gem 'redis-namespace'
+gem 'redis-rack-cache'
+gem 'redis-rails'
+# Suckerpunch for background processing
+gem 'sucker_punch', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,9 +61,7 @@ group :development, :test do
   # Fake data
   gem 'faker'
   # We do a web scraping to insert REAL urls
-  gem  'mechanize'
-  
-
+  gem 'mechanize'
 end
 
 group :development do
