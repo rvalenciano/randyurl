@@ -32,6 +32,12 @@ gem 'dotenv-rails'
 # rubocop for styling
 gem 'rubocop', require: false
 
+# rails_admin for crud management
+gem 'rails_admin', '~> 1.2'
+# Using active model serializer for a layer between controller and model
+gem 'active_model_serializers'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
