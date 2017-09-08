@@ -36,6 +36,8 @@ gem 'rubocop', require: false
 gem 'rails_admin', '~> 1.2'
 # Using active model serializer for a layer between controller and model
 gem 'active_model_serializers'
+# API Protection
+gem 'rack-attack'
 
 
 group :development, :test do

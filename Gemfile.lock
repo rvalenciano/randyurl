@@ -131,6 +131,8 @@ GEM
       slop (~> 3.4)
     puma (3.10.0)
     rack (2.0.3)
+    rack-attack (5.0.1)
+      rack
     rack-cors (1.0.1)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -260,6 +262,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry
   puma (~> 3.7)
+  rack-attack
   rack-cors
   rails (~> 5.1.4)
   rails_admin (~> 1.2)
