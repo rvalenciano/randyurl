@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'mechanize'
 
 module Api::V1
   class UrlsController < ApiController
