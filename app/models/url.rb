@@ -15,6 +15,15 @@ class Url < ApplicationRecord
     EncodingUrlService.instance.bijective_decode(minified_url.split('/').last)
   end
 
+    def self.increase_access(minified_url)
+     u = where(minified_url: minified_url)
+     if(u.any?)
+       u = u.first
+       u.access += 1
+       u.save!
+     end
+   end
+
   # @return: url {string} Long path url
   def self.lookup(minified_url)
     result_url = ''
@@ -37,7 +46,8 @@ class Url < ApplicationRecord
       $redis.set(minified_url, url.url)
     else
       # We return redis result and in an async manner we update the access
-      AccessJob.perform_async(minified_url)
+      complete_url = "#{ENV.fetch('SHORT_URL_PROTOCOL')}://#{ENV.fetch('SHORT_URL_HOSTNAME')}/y/#{minified_url}"
+      AccessJob.perform_async(complete_url)
       result_url = redis_cached_url
     end
     result_url
