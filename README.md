@@ -49,14 +49,19 @@ avoid as much as possible errors in the installation process. Vagrant will insta
 1. Install `vagrant` and `virtual box`.
 2. Run:
 ```shell 
-git clone https://github.com/rvalenciano/randyurl.git /some/path/ 
+git clone --recursive https://github.com/rvalenciano/randyurl.git /some/path/ 
 ```
+Since we're using swagger-ui as a submodule, we need to pull the submodules using the --recursive flag.
+
 3. Run: 
 
 ```shell 
 cd /some/path/randyurl/vagrant/
 vagrant up
 ```
+
+
+
 4. This will run every ssh file into `vagrant/scripts` folder, installing previously mentioned components. Also will download an ubuntu 16 machine in headless mode.
 
 5. Once it completed, run:
@@ -84,6 +89,8 @@ bin/rails db:test:prepare
 bundle exec rspec spec
 ```
 
+##### Integration
+
 ### Development
 
 * Create a feature branch from dev branch
@@ -94,6 +101,7 @@ bundle exec rspec spec
 * Merge PR to dev.
 * Any sensitive data added (API_KEY, OAUTH_TOKEN, PASSWORDS) add them to the .env and .env.example (without values) to avoid having sensitive data in our source code.
 * Create PR from dev to master.
+* If you change swagger documentation, run `bin/rails swagger:docs`
 
 
 ### Security

@@ -10,6 +10,7 @@ RSpec.describe Url, type: :model do
 
   let!(:unaccessed_url) { create :url }
   let!(:accessed_url) { create :url, :accessed }
+  let!(:accessed_once) { create :url, :accessed_once }
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
@@ -32,5 +33,15 @@ RSpec.describe Url, type: :model do
   it 'accessed is not valid without a url' do
     accessed_url.url = nil
     expect(accessed_url).to_not be_valid
+  end
+
+  it 'process url called once increases accesses by one' do
+    subject.process_url('http://someurl/something/over/the/rainbow')
+    expect(subject.access).to eq accessed_once.access
+  end
+
+  it 'process url assigns minified url' do
+    subject.process_url('http://someurl/something/over/the/rainbow')
+    expect(subject.minified_url).to eq accessed_once.minified_url
   end
 end
