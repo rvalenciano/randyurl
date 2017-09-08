@@ -37,6 +37,14 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # for debugging
   gem 'pry'
+
+  # Use RSpec for specs
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+
+  # Use Factory Girl for generating random test data
+  gem 'factory_girl_rails'
+  # We want to see coverage
+  gem 'simplecov'
 end
 
 group :development do
