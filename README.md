@@ -31,6 +31,7 @@ Some of the libraries we use to build our api are:
 * dotenv-rails, manage environment variables.
 * simplecov, we want to see we have good coverage with tests.
 * ruby-critic, more automatic and static code analysis.
+* rails_admin for CRUD management
 
 
 ### Installation
