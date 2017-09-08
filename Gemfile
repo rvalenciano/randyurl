@@ -54,6 +54,10 @@ group :development, :test do
   gem 'simplecov'
   # Fake data
   gem 'faker'
+  # We do a web scraping to insert REAL urls
+  gem  'mechanize'
+  
+
 end
 
 group :development do

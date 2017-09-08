@@ -75,6 +75,8 @@ bin/rails rake db:seed
 bin/rails s
 ```
 
+For the seeds, we actually use a web crawler to retrieve actual urls from pages of wikipedia. This way we seed real urls.
+
 #### Running Tests
 
 ##### Unit
