@@ -88,8 +88,4 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV.fetch('PRODUCTION_DATABASE_NAME') %>
-  username: <%= ENV.fetch('PRODUCTION_DATABASE_USERNAME') %>
-  password: <%= ENV.fetch('PRODUCTION_DATABASE_PASSWORD') %>
-  port: <%= ENV.fetch('PRODUCTION_DATABASE_PORT') %>
-  host: <%= ENV.fetch('PRODUCTION_DATABASE_HOST') %>
+
