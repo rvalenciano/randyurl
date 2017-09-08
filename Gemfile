@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -24,7 +24,7 @@ gem 'redis', '~> 3.0'
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 # Handling env variables
 gem 'dotenv-rails'
@@ -32,11 +32,36 @@ gem 'dotenv-rails'
 # rubocop for styling
 gem 'rubocop', require: false
 
+# rails_admin for crud management
+gem 'rails_admin', '~> 1.2'
+# Using active model serializer for a layer between controller and model
+gem 'active_model_serializers'
+# API Protection
+gem 'rack-attack'
+# Redis model caching
+gem 'redis-namespace'
+gem 'redis-rack-cache'
+gem 'redis-rails'
+# Suckerpunch for background processing
+gem 'sucker_punch', '~> 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # for debugging
   gem 'pry'
+
+  # Use RSpec for specs
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+
+  # Use Factory Girl for generating random test data
+  gem 'factory_girl_rails'
+  # We want to see coverage
+  gem 'simplecov'
+  # Fake data
+  gem 'faker'
+  # We do a web scraping to insert REAL urls
+  gem 'mechanize'
 end
 
 group :development do
