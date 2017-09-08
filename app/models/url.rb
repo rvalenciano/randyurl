@@ -12,6 +12,11 @@ class Url < ApplicationRecord
     u
   end
 
+  def self.decode_url(minified_url)
+    decoded_id = EncodingUrlService.new.bijective_decode(minified_url.split('/').last)
+    Url.find(decoded_id).url
+  end
+
   def increase_access(minified_url)
     u = where(minified_url: minified_url)
     u.access += 1

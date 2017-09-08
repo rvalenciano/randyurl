@@ -10,6 +10,11 @@ module Api::V1
       render json: Url.top(100), status: :ok
     end
 
+    def lookup
+      # Url.lookup(params[:id])
+      render json: {short: params[:id]}
+    end
+
     def create
       # if is not in cache, we create it
       @url = Url.new

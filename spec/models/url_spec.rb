@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Url, type: :model do
   subject do
     described_class.new(url: 'http://someurl/something/over/the/rainbow',
-                        minified_url: 'http://randyurl.com/j7ve58y')
+                        minified_url: 'http://localhost:8080/y/j7t')
   end
 
   let!(:unaccessed_url) { create :url }
@@ -36,12 +36,19 @@ RSpec.describe Url, type: :model do
   end
 
   it 'process url called once increases accesses by one' do
-    subject.process_url('http://someurl/something/over/the/rainbow')
-    expect(subject.access).to eq accessed_once.access
+    url = Url.process_url('http://someurl/something/over/the/rainbow')
+    expect(url.access).to eq accessed_once.access
   end
 
-  it 'process url assigns minified url' do
-    subject.process_url('http://someurl/something/over/the/rainbow')
-    expect(subject.minified_url).to eq accessed_once.minified_url
+  it 'verifies encode url works' do
+    url = Url.process_url('http://someurl/something/over/the/rainbow')
+    expect(url.minified_url.split('/').last.length).to eq accessed_once.minified_url.split('/').last.length
+  end
+
+  it 'verifies decode url works' do
+    url = Url.process_url('http://someurl/something/over/the/rainbow')
+    expected_id = url.id
+    decoded_url = Url.decode_url(url.minified_url)
+    expect(decoded_url).to eq 'http://someurl/something/over/the/rainbow'
   end
 end
