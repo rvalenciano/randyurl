@@ -45,6 +45,8 @@ gem 'redis-rack-cache'
 gem 'redis-rails'
 # Suckerpunch for background processing
 gem 'sucker_punch', '~> 2.0'
+# We do a web scraping to insert REAL urls
+gem 'mechanize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,8 +63,6 @@ group :development, :test do
   gem 'simplecov'
   # Fake data
   gem 'faker'
-  # We do a web scraping to insert REAL urls
-  gem 'mechanize'
 end
 
 group :development do
