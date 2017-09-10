@@ -18,7 +18,7 @@ I try to use good practices and motivations in the project to keep as sweet as p
 ### Architecture
 
 The app is divided in 2 actual apps. The backend is a rails 5 api mode app and ruby 2.3.3. The frontend is
-an Angular 2 client. The frontend is served totally independent from the backend.
+an Angular 4 client. The frontend is served totally independent from the backend.
 
 #### API bits.
 
@@ -26,7 +26,6 @@ Some of the libraries we use to build our api are:
 * rspec-rails for testing.
 * factory_girl_rails for test data.
 * active_model_serializers for building complex json if we need to.
-* swagger autodiscover api, autodocument api, export api, test api.
 * rubocop, style matters.
 * dotenv-rails, manage environment variables.
 * simplecov, we want to see we have good coverage with tests.
@@ -61,7 +60,6 @@ avoid as much as possible errors in the installation process. Vagrant will insta
 ```shell 
 git clone --recursive https://github.com/rvalenciano/randyurl.git /some/path/ 
 ```
-Since we're using swagger-ui as a submodule, we need to pull the submodules using the --recursive flag.
 
 3. Run: 
 
