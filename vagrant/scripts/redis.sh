@@ -1,4 +1,4 @@
-cd /tmp
+pushd /tmp
 curl -O http://download.redis.io/redis-stable.tar.gz
 tar xzvf redis-stable.tar.gz
 cd redis-stable
@@ -17,3 +17,7 @@ sudo chmod 770 /var/lib/redis
 sudo systemctl start redis
 sudo systemctl status redis
 echo config set stop-writes-on-bgsave-error no | redis-cli
+sudo systemctl stop redis
+sudo systemctl start redis
+sudo systemctl status redis
+popd
