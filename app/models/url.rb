@@ -2,6 +2,16 @@ class Url < ApplicationRecord
   validates_presence_of :url, :access
   scope :top, ->(limit) { order('access desc').limit(limit) }
 
+  before_validation :normalize_url, on: :create
+    # check if url is valid and/or it has a scheme
+
+  def normalize_url
+    u = URI.parse(self.url)
+    if(!u.scheme)
+      self.url = "http://#{self.url}"
+    end
+  end
+
   def self.process_url(url)
     u = Url.create(url: url)
     u.minified_url = "#{ENV.fetch('SHORT_URL_PROTOCOL')}://#{ENV.fetch('SHORT_URL_HOSTNAME')}/y/#{EncodingUrlService.instance.bijective_encode(u.id)}"
